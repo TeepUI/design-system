@@ -3,7 +3,7 @@ import { createGlobalStyle } from "../themes";
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Poppins:400');
 
-  html {font-size: 112.5%;} /*18px*/
+  html {font-size: 150%;} /*24px*/
 
   body {
     font-family: 'Poppins', sans-serif;
@@ -15,26 +15,25 @@ const GlobalStyles = createGlobalStyle`
   p {margin-bottom: 1rem;}
 
   h1, h2, h3, h4, h5 {
-    margin: 3rem 0 1.38rem;
+    margin: 3rem 0 1rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    line-height: 1.3;
+    line-height: 1.5;
   }
 
   h1 {
     margin-top: 0;
-    font-size: 4.209rem;
+    font-size: 3.167em;
   }
 
-  h2 {font-size: 3.157rem;}
+  h2 {font-size: 2.5em;}
 
-  h3 {font-size: 2.369rem;}
+  h3 {font-size: 2em;}
 
-  h4 {font-size: 1.777rem;}
+  h4 {font-size: 1.5em;}
 
-  h5 {font-size: 1.333rem;}
+  h5 {font-size: 1.25em;}
 
-  small, .text_small {font-size: 0.75rem;}
 `;
 
 export { GlobalStyles };
