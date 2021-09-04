@@ -2,7 +2,10 @@ import { Tokens, tokens } from "./tokens";
 
 type Theme = {
   tokens: Tokens;
-  color: string;
+  body: {
+    background: string;
+    color: string;
+  };
   blockquote: {
     border: string;
   };
@@ -10,11 +13,17 @@ type Theme = {
     background: string;
     color: string;
   };
+  header: {
+    background: string;
+  };
 };
 
 const darkTheme: Theme = {
   tokens,
-  color: tokens.colors.white,
+  body: {
+    background: tokens.colors.black,
+    color: tokens.colors.white,
+  },
   blockquote: {
     border: tokens.colors.white,
   },
@@ -22,17 +31,26 @@ const darkTheme: Theme = {
     background: tokens.colors.pink[400],
     color: tokens.colors.black,
   },
+  header: {
+    background: tokens.colors.gray[900],
+  },
 };
 
 const lightTheme: Theme = {
   tokens,
-  color: tokens.colors.black,
+  body: {
+    background: tokens.colors.gray[100],
+    color: tokens.colors.black,
+  },
   blockquote: {
     border: tokens.colors.black,
   },
   inlineCode: {
     background: tokens.colors.pink[100],
     color: tokens.colors.black,
+  },
+  header: {
+    background: tokens.colors.white,
   },
 };
 

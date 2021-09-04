@@ -7,7 +7,8 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     line-height: 1.75;
-    color: ${(props) => props.theme.color};
+    color: ${(props) => props.theme.body.color};
+    background: ${(props) => props.theme.body.background};
   }
 
   p {margin-bottom: 1rem;}
