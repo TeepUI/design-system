@@ -2,7 +2,7 @@ import React from "react";
 import { useDarkMode } from "storybook-dark-mode";
 import { themes } from "@storybook/theming";
 import { ThemeProvider } from "../src";
-import { DocsContainer as BaseContainer } from "@storybook/addon-docs/blocks";
+import { DocsContainer as BaseContainer } from "@storybook/addon-docs";
 
 function ThemeWrapper(props) {
   const isDarkMode = useDarkMode();

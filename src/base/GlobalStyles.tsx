@@ -1,8 +1,6 @@
 import { createGlobalStyle } from "../themes";
 
 const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Poppins:400');
-
   html {font-size: 150%;} /*24px*/
 
   body {

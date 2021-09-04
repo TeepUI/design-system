@@ -1,4 +1,19 @@
 const tokens = {
+  space: {
+    0: "0px",
+    1: "4px",
+    2: "8px",
+    3: "16px",
+    4: "24px",
+    5: "32px",
+  },
+  corners: {
+    0: "0px",
+    1: "2px",
+    2: "4px",
+    3: "6px",
+    4: "8px",
+  },
   colors: {
     primary: "#4795EE",
     white: "#FFFFFF",
@@ -50,4 +65,7 @@ const tokens = {
   },
 };
 
+type Tokens = typeof tokens;
+
+export type { Tokens };
 export { tokens };

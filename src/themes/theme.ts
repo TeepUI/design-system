@@ -1,6 +1,7 @@
-import { tokens } from "./tokens";
+import { Tokens, tokens } from "./tokens";
 
 type Theme = {
+  tokens: Tokens;
   color: string;
   blockquote: {
     border: string;
@@ -12,6 +13,7 @@ type Theme = {
 };
 
 const darkTheme: Theme = {
+  tokens,
   color: tokens.colors.white,
   blockquote: {
     border: tokens.colors.white,
@@ -23,6 +25,7 @@ const darkTheme: Theme = {
 };
 
 const lightTheme: Theme = {
+  tokens,
   color: tokens.colors.black,
   blockquote: {
     border: tokens.colors.black,
