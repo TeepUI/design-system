@@ -1,7 +1,11 @@
 import { createGlobalStyle } from "../themes";
 
 const GlobalStyles = createGlobalStyle`
-  html {font-size: 150%;} /*24px*/
+  * {
+    box-sizing: border-box;
+  }
+
+  html {font-size: 100%;} /* 16px */
 
   body {
     font-family: 'Poppins', sans-serif;

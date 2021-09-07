@@ -16,6 +16,16 @@ type Theme = {
   header: {
     background: string;
   };
+  button: {
+    primary: {
+      buttonColor: string;
+      textColor: string;
+    };
+    secondary: {
+      buttonColor: string;
+      textColor: string;
+    };
+  };
 };
 
 const darkTheme: Theme = {
@@ -34,6 +44,16 @@ const darkTheme: Theme = {
   header: {
     background: tokens.colors.gray[900],
   },
+  button: {
+    primary: {
+      buttonColor: tokens.colors.primary,
+      textColor: tokens.colors.white,
+    },
+    secondary: {
+      buttonColor: tokens.colors.white,
+      textColor: tokens.colors.white,
+    },
+  },
 };
 
 const lightTheme: Theme = {
@@ -51,6 +71,16 @@ const lightTheme: Theme = {
   },
   header: {
     background: tokens.colors.white,
+  },
+  button: {
+    primary: {
+      buttonColor: tokens.colors.primary,
+      textColor: tokens.colors.white,
+    },
+    secondary: {
+      buttonColor: tokens.colors.primary,
+      textColor: tokens.colors.primary,
+    },
   },
 };
 
