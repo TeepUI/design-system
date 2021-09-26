@@ -26,6 +26,12 @@ type Theme = {
       textColor: string;
     };
   };
+  link: {
+    color: string;
+  };
+  mark: {
+    background: string;
+  };
 };
 
 const darkTheme: Theme = {
@@ -54,6 +60,12 @@ const darkTheme: Theme = {
       textColor: tokens.colors.white,
     },
   },
+  link: {
+    color: tokens.colors.blue[600],
+  },
+  mark: {
+    background: tokens.colors.green[200],
+  },
 };
 
 const lightTheme: Theme = {
@@ -81,6 +93,12 @@ const lightTheme: Theme = {
       buttonColor: tokens.colors.primary,
       textColor: tokens.colors.primary,
     },
+  },
+  link: {
+    color: tokens.colors.blue[900],
+  },
+  mark: {
+    background: tokens.colors.green[200],
   },
 };
 
