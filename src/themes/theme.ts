@@ -19,11 +19,14 @@ type Theme = {
   button: {
     primary: {
       buttonColor: string;
+      buttonColorHovered: string;
       textColor: string;
     };
     secondary: {
       buttonColor: string;
+      buttonColorHovered: string;
       textColor: string;
+      textColorHovered: string;
     };
   };
   link: {
@@ -53,11 +56,14 @@ const darkTheme: Theme = {
   button: {
     primary: {
       buttonColor: tokens.colors.primary,
+      buttonColorHovered: tokens.colors.blue[800],
       textColor: tokens.colors.white,
     },
     secondary: {
       buttonColor: tokens.colors.white,
+      buttonColorHovered: tokens.colors.gray[200],
       textColor: tokens.colors.white,
+      textColorHovered: tokens.colors.gray[200],
     },
   },
   link: {
@@ -87,11 +93,14 @@ const lightTheme: Theme = {
   button: {
     primary: {
       buttonColor: tokens.colors.primary,
+      buttonColorHovered: tokens.colors.blue[600],
       textColor: tokens.colors.white,
     },
     secondary: {
       buttonColor: tokens.colors.primary,
+      buttonColorHovered: tokens.colors.blue[600],
       textColor: tokens.colors.primary,
+      textColorHovered: tokens.colors.gray[600],
     },
   },
   link: {

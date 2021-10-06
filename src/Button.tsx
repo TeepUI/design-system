@@ -14,11 +14,16 @@ const Button = styled.button<ButtonProps>(
     background: none;
     cursor: pointer;
     border-radius: ${theme.tokens.corners[4]};
+    transition: 0.2s;
 
     ${variant === "primary"
       ? css`
           background: ${theme.button.primary.buttonColor};
           color: ${theme.button.primary.textColor};
+
+          :hover {
+            background: ${theme.button.primary.buttonColorHovered};
+          }
         `
       : null}
 
@@ -26,6 +31,11 @@ const Button = styled.button<ButtonProps>(
       ? css`
           border: 1px solid ${theme.button.secondary.buttonColor};
           color: ${theme.button.secondary.textColor};
+
+          :hover {
+            border-color: ${theme.button.secondary.buttonColorHovered};
+            color: ${theme.button.secondary.textColorHovered};
+          }
         `
       : null}
   `
