@@ -1,11 +1,11 @@
 import {
   SpotlightSearchProvider,
-  useSpotlightSearch,
+  useSpotlightSearchState,
 } from "../SpotlightSearch";
 import React from "react";
 
 function Main() {
-  const state = useSpotlightSearch();
+  const state = useSpotlightSearchState();
 
   return (
     <div>

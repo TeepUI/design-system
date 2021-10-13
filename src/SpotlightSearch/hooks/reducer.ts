@@ -9,6 +9,12 @@ type ActionType =
     }
   | {
       type: "TOGGLE";
+    }
+  | {
+      type: "CHANGE_SEARCH_VALUE";
+      payload: {
+        value: string;
+      };
     };
 
 function reducer(
@@ -17,19 +23,16 @@ function reducer(
 ): SpotlightSearchStateType {
   switch (action.type) {
     case "OPEN": {
-      return {
-        isOpen: true,
-      };
+      return { ...state, visible: true };
     }
     case "CLOSE": {
-      return {
-        isOpen: false,
-      };
+      return { ...state, visible: false };
     }
     case "TOGGLE": {
-      return {
-        isOpen: !state.isOpen,
-      };
+      return { ...state, visible: !state.visible };
+    }
+    case "CHANGE_SEARCH_VALUE": {
+      return { ...state, searchValue: action.payload.value };
     }
     default: {
       return state;
@@ -37,4 +40,5 @@ function reducer(
   }
 }
 
+export type { ActionType };
 export { reducer };

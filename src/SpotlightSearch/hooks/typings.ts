@@ -1,3 +1,4 @@
 export type SpotlightSearchStateType = {
-  isOpen: boolean;
+  visible: boolean;
+  searchValue: string;
 };
