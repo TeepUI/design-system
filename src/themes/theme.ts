@@ -35,6 +35,11 @@ type Theme = {
   mark: {
     background: string;
   };
+  spotlightSearch: {
+    overlayBackground: string;
+    modalBackground: string;
+    modalTextColor: string;
+  };
 };
 
 const darkTheme: Theme = {
@@ -72,6 +77,11 @@ const darkTheme: Theme = {
   mark: {
     background: tokens.colors.green[200],
   },
+  spotlightSearch: {
+    overlayBackground: `rgba(0, 0, 0, 0.5)`,
+    modalBackground: tokens.colors.gray[800],
+    modalTextColor: tokens.colors.white,
+  },
 };
 
 const lightTheme: Theme = {
@@ -108,6 +118,11 @@ const lightTheme: Theme = {
   },
   mark: {
     background: tokens.colors.green[200],
+  },
+  spotlightSearch: {
+    overlayBackground: `rgba(0, 0, 0, 0.5)`,
+    modalBackground: tokens.colors.gray[800],
+    modalTextColor: tokens.colors.white,
   },
 };
 
