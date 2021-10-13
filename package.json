@@ -62,6 +62,7 @@
   "dependencies": {
     "invert-color": "^2.0.0",
     "react-helmet": "^6.1.0",
+    "react-icons": "^4.3.1",
     "storybook-dark-mode": "^1.0.8",
     "styled-components": "^5.3.0"
   }

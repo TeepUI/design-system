@@ -6,19 +6,30 @@ import React, {
   useReducer,
 } from "react";
 import { SpotlightSearch } from "../SpotlightSearch";
-import { reducer } from "./reducer";
+import { ActionType, reducer } from "./reducer";
 import { SpotlightSearchStateType } from "./typings";
 
+type SpotlightSearchDispatchType = React.Dispatch<ActionType>;
+
 const initialState: SpotlightSearchStateType = {
-  isOpen: false,
+  visible: false,
+  searchValue: "",
 };
 
 const SpotlightSearchStateContext = createContext<SpotlightSearchStateType>(
   initialState
 );
 
-function useSpotlightSearch() {
+const SpotlightSearchDispatchContext = createContext<SpotlightSearchDispatchType>(
+  () => {}
+);
+
+function useSpotlightSearchState() {
   return useContext(SpotlightSearchStateContext);
+}
+
+function useSpotlightSearchDispatch() {
+  return useContext(SpotlightSearchDispatchContext);
 }
 
 function SpotlightSearchProvider(props: PropsWithChildren<unknown>) {
@@ -49,10 +60,19 @@ function SpotlightSearchProvider(props: PropsWithChildren<unknown>) {
 
   return (
     <SpotlightSearchStateContext.Provider value={state}>
-      <SpotlightSearch visible={state.isOpen} onClose={closeSpotlightSearch} />
-      {props.children}
+      <SpotlightSearchDispatchContext.Provider value={dispatch}>
+        <SpotlightSearch
+          visible={state.visible}
+          onClose={closeSpotlightSearch}
+        />
+        {props.children}
+      </SpotlightSearchDispatchContext.Provider>
     </SpotlightSearchStateContext.Provider>
   );
 }
 
-export { useSpotlightSearch, SpotlightSearchProvider };
+export {
+  useSpotlightSearchState,
+  useSpotlightSearchDispatch,
+  SpotlightSearchProvider,
+};

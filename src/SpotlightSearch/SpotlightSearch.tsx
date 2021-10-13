@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
+import { BiSearch } from "react-icons/bi";
+import { BsXCircleFill } from "react-icons/bs";
 import { css, styled } from "../themes";
+import { useSpotlightSearchDispatch } from "./hooks/use-spotlight-search";
 
 type SpotlightSearchProps = {
   visible?: boolean;
@@ -7,6 +10,7 @@ type SpotlightSearchProps = {
 };
 
 function SpotlightSearch(props: SpotlightSearchProps) {
+  const dispatch = useSpotlightSearchDispatch();
   const ref = useRef<HTMLInputElement>(null);
   const [value, setValue] = useState("");
 
@@ -27,6 +31,13 @@ function SpotlightSearch(props: SpotlightSearchProps) {
     }
   }, [props.visible]);
 
+  useEffect(() => {
+    dispatch({
+      type: "CHANGE_SEARCH_VALUE",
+      payload: { value },
+    });
+  }, [value]);
+
   if (!props.visible) {
     return null;
   }
@@ -36,7 +47,9 @@ function SpotlightSearch(props: SpotlightSearchProps) {
       <Backdrop onClick={props.onClose} />
       <Content>
         <SearchContainer>
-          <SearchIcon>🔦</SearchIcon>
+          <SearchIcon>
+            <BiSearchIcon />
+          </SearchIcon>
           <SearchInput
             ref={ref}
             value={value}
@@ -45,7 +58,9 @@ function SpotlightSearch(props: SpotlightSearchProps) {
             placeholder="Search..."
           />
           {value.length > 0 ? (
-            <ClearInputIcon onClick={clearInputValue}>🅧</ClearInputIcon>
+            <ClearInputIcon onClick={clearInputValue}>
+              <BsXCircleFillIcon />
+            </ClearInputIcon>
           ) : null}
         </SearchContainer>
       </Content>
@@ -121,7 +136,14 @@ const ClearInputIcon = styled.button(
     cursor: pointer;
     background: none;
     color: ${theme.spotlightSearch.modalTextColor};
+    padding: 0;
     width: 48px;
+    outline: none;
+
+    :focus > * {
+      outline: 4px solid rgba(71, 149, 238, 0.5);
+      border-radius: 50%;
+    }
   `
 );
 
@@ -137,5 +159,19 @@ const SearchInput = styled.input(
     outline: none;
   `
 );
+
+const BiSearchIcon = styled(BiSearch)`
+  width: 50%;
+  height: 50%;
+`;
+
+const BsXCircleFillIcon = styled(BsXCircleFill)`
+  width: 40%;
+  height: 40%;
+
+  :focus-within {
+    border: 1px solid red;
+  }
+`;
 
 export { SpotlightSearch };
