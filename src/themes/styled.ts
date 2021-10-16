@@ -7,6 +7,7 @@ import { Theme } from "./theme";
 
 const {
   default: styled,
+  keyframes,
   css,
   ThemeProvider: StyledThemeProvider,
   createGlobalStyle,
@@ -15,4 +16,4 @@ const {
 type StyledProps<T> = ThemedStyledProps<T, Theme>;
 
 export type { StyledProps };
-export { styled, css, StyledThemeProvider, createGlobalStyle };
+export { styled, css, StyledThemeProvider, createGlobalStyle, keyframes };
