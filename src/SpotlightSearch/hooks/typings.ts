@@ -7,4 +7,5 @@ export type SpotlightSearchStateType = {
   visible: boolean;
   searchValue: string;
   searchResults: SearchResult[];
+  selectedIndex: number;
 };

@@ -84,7 +84,14 @@ function SpotlightSearch(props: SpotlightSearchProps) {
         {state.searchResults.length ? (
           <ResultsContainer>
             {state.searchResults.map((result, index) => {
-              return <ResultsItem key={index}>{result.title}</ResultsItem>;
+              return (
+                <ResultsItem
+                  key={index}
+                  isSelected={index === state.selectedIndex}
+                >
+                  {result.title}
+                </ResultsItem>
+              );
             })}
           </ResultsContainer>
         ) : null}
@@ -228,11 +235,16 @@ const ResultsContainer = styled.div`
   border-top: 1px solid #444;
 `;
 
-const ResultsItem = styled.div(
-  ({ theme }) => css`
+const ResultsItem = styled.div<{ isSelected?: boolean }>(
+  ({ theme, isSelected }) => css`
     display: flex;
     align-items: center;
     padding: ${theme.tokens.space[3]} ${theme.tokens.space[4]};
+
+    ${isSelected &&
+    css`
+      background: rgba(255, 255, 255, 0.1);
+    `}
 
     :not(:last-child) {
       border-bottom: 1px solid #444;

@@ -21,6 +21,7 @@ const initialState: SpotlightSearchStateType = {
   status: "idle",
   searchValue: "",
   searchResults: [],
+  selectedIndex: 0,
 };
 
 const SpotlightSearchStateContext = createContext<SpotlightSearchStateType>(
@@ -89,6 +90,14 @@ function SpotlightSearchProvider(
     if (event.metaKey && event.key === "p") {
       event.preventDefault();
       dispatch({ type: "TOGGLE" });
+    }
+
+    if (event.key === "Down" || event.key === "ArrowDown") {
+      dispatch({ type: "CHANGE_SELECTED_INDEX_TO_NEXT" });
+    }
+
+    if (event.key === "Up" || event.key === "ArrowUp") {
+      dispatch({ type: "CHANGE_SELECTED_INDEX_TO_PREV" });
     }
 
     if (event.key === "Escape" || event.key === "Esc") {
