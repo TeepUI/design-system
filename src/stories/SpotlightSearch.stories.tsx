@@ -39,6 +39,12 @@ function request(value: string) {
           {
             title: "Something #2 (" + value + ")",
           },
+          {
+            title: "Something #3 (" + value + ")",
+          },
+          {
+            title: "Something #4 (" + value + ")",
+          },
         ]);
       }
     }, 2000);

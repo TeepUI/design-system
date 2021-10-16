@@ -27,6 +27,12 @@ type ActionType =
       payload: {
         value: SearchResult[];
       };
+    }
+  | {
+      type: "CHANGE_SELECTED_INDEX_TO_NEXT";
+    }
+  | {
+      type: "CHANGE_SELECTED_INDEX_TO_PREV";
     };
 
 function reducer(
@@ -39,7 +45,7 @@ function reducer(
 
   switch (action.type) {
     case "OPEN": {
-      return { ...state, visible: true };
+      return { ...state, visible: true, selectedIndex: 0 };
     }
     case "CLOSE": {
       return {
@@ -48,6 +54,7 @@ function reducer(
         status: "idle",
         searchResults: [],
         searchValue: "",
+        selectedIndex: 0,
       };
     }
     case "TOGGLE": {
@@ -57,12 +64,14 @@ function reducer(
         status: "idle",
         searchResults: [],
         searchValue: "",
+        selectedIndex: 0,
       };
     }
     case "CHANGE_SEARCH_VALUE": {
       const newState: SpotlightSearchStateType = {
         ...state,
         searchValue: action.payload.value,
+        selectedIndex: 0,
       };
 
       if (action.payload.value.length === 0) {
@@ -73,7 +82,11 @@ function reducer(
       return newState;
     }
     case "CHANGE_SEARCH_RESULTS_REQUESTED": {
-      return { ...state, status: "loading", searchResults: [] };
+      return {
+        ...state,
+        status: "loading",
+        searchResults: [],
+      };
     }
     case "CHANGE_SEARCH_RESULTS_RESOLVED": {
       return {
@@ -84,6 +97,21 @@ function reducer(
     }
     case "CHANGE_SEARCH_RESULTS_REJECTED": {
       return { ...state, status: "error" };
+    }
+    case "CHANGE_SELECTED_INDEX_TO_NEXT": {
+      const nextIndex =
+        state.selectedIndex + 1 > state.searchResults.length - 1
+          ? 0
+          : state.selectedIndex + 1;
+      return { ...state, selectedIndex: nextIndex };
+    }
+    case "CHANGE_SELECTED_INDEX_TO_PREV": {
+      const prevIndex =
+        state.selectedIndex - 1 < 0
+          ? state.searchResults.length - 1
+          : state.selectedIndex - 1;
+
+      return { ...state, selectedIndex: prevIndex };
     }
     default: {
       return state;
