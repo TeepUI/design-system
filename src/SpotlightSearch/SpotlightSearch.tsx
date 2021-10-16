@@ -1,8 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { BiSearch } from "react-icons/bi";
+import { useMemo } from "react";
+import { BiSearch, BiLoaderAlt } from "react-icons/bi";
 import { BsXCircleFill } from "react-icons/bs";
-import { css, styled } from "../themes";
-import { useSpotlightSearchDispatch } from "./hooks/use-spotlight-search";
+import { debounce } from "throttle-debounce";
+import { css, styled, keyframes } from "../themes";
+import {
+  useSpotlightSearchDispatch,
+  useSpotlightSearchState,
+} from "./hooks/use-spotlight-search";
 
 type SpotlightSearchProps = {
   visible?: boolean;
@@ -10,6 +15,7 @@ type SpotlightSearchProps = {
 };
 
 function SpotlightSearch(props: SpotlightSearchProps) {
+  const state = useSpotlightSearchState();
   const dispatch = useSpotlightSearchDispatch();
   const ref = useRef<HTMLInputElement>(null);
   const [value, setValue] = useState("");
@@ -31,11 +37,19 @@ function SpotlightSearch(props: SpotlightSearchProps) {
     }
   }, [props.visible]);
 
+  const updateSearchValueState = useMemo(
+    () =>
+      debounce(600, (value: string) => {
+        dispatch({
+          type: "CHANGE_SEARCH_VALUE",
+          payload: { value },
+        });
+      }),
+    []
+  );
+
   useEffect(() => {
-    dispatch({
-      type: "CHANGE_SEARCH_VALUE",
-      payload: { value },
-    });
+    updateSearchValueState(value);
   }, [value]);
 
   if (!props.visible) {
@@ -48,7 +62,11 @@ function SpotlightSearch(props: SpotlightSearchProps) {
       <Content>
         <SearchContainer>
           <SearchIcon>
-            <BiSearchIcon />
+            {state.status === "loading" ? (
+              <BiLoaderAltIcon />
+            ) : (
+              <BiSearchIcon />
+            )}
           </SearchIcon>
           <SearchInput
             ref={ref}
@@ -63,6 +81,19 @@ function SpotlightSearch(props: SpotlightSearchProps) {
             </ClearInputIcon>
           ) : null}
         </SearchContainer>
+        {state.searchResults.length ? (
+          <ResultsContainer>
+            {state.searchResults.map((result, index) => {
+              return <ResultsItem key={index}>{result.title}</ResultsItem>;
+            })}
+          </ResultsContainer>
+        ) : null}
+        {state.status === "error" && state.searchResults.length === 0 ? (
+          <NoResultsContainer>
+            <b>No Results</b>
+            <span>Try different search terms</span>
+          </NoResultsContainer>
+        ) : null}
       </Content>
     </Root>
   );
@@ -99,6 +130,7 @@ const Backdrop = styled.div(
 const Content = styled.div(
   ({ theme }) => css`
     display: flex;
+    flex-direction: column;
     background: ${theme.spotlightSearch.modalBackground};
     color: ${theme.spotlightSearch.modalTextColor};
     border-radius: ${theme.tokens.corners[1]};
@@ -173,5 +205,50 @@ const BsXCircleFillIcon = styled(BsXCircleFill)`
     border: 1px solid red;
   }
 `;
+
+const rotateAnimation = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const BiLoaderAltIcon = styled(BiLoaderAlt)`
+  width: 50%;
+  height: 50%;
+  animation: ${rotateAnimation} 0.8s infinite linear;
+`;
+
+const ResultsContainer = styled.div`
+  display: grid;
+  grid-template-rows: 60px;
+  border-top: 1px solid #444;
+`;
+
+const ResultsItem = styled.div(
+  ({ theme }) => css`
+    display: flex;
+    align-items: center;
+    padding: ${theme.tokens.space[3]} ${theme.tokens.space[4]};
+
+    :not(:last-child) {
+      border-bottom: 1px solid #444;
+    }
+  `
+);
+
+const NoResultsContainer = styled.div(
+  ({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-top: 1px solid #444;
+    padding: ${theme.tokens.space[3]} ${theme.tokens.space[4]};
+  `
+);
 
 export { SpotlightSearch };

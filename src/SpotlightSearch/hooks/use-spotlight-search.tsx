@@ -1,3 +1,4 @@
+import Bluebird from "bluebird";
 import React, {
   createContext,
   PropsWithChildren,
@@ -5,15 +6,21 @@ import React, {
   useEffect,
   useReducer,
 } from "react";
+import { useRef, useState } from "react";
 import { SpotlightSearch } from "../SpotlightSearch";
 import { ActionType, reducer } from "./reducer";
-import { SpotlightSearchStateType } from "./typings";
+import { SearchResult, SpotlightSearchStateType } from "./typings";
 
 type SpotlightSearchDispatchType = React.Dispatch<ActionType>;
+type SpotlightSearchConfig = {
+  onSearch?: (value: string) => Bluebird<SearchResult[]>;
+};
 
 const initialState: SpotlightSearchStateType = {
   visible: false,
+  status: "idle",
   searchValue: "",
+  searchResults: [],
 };
 
 const SpotlightSearchStateContext = createContext<SpotlightSearchStateType>(
@@ -32,12 +39,51 @@ function useSpotlightSearchDispatch() {
   return useContext(SpotlightSearchDispatchContext);
 }
 
-function SpotlightSearchProvider(props: PropsWithChildren<unknown>) {
+type SpotlightSearchProviderProps = {
+  config: SpotlightSearchConfig;
+};
+
+function SpotlightSearchProvider(
+  props: PropsWithChildren<SpotlightSearchProviderProps>
+) {
+  const currentRequest = useRef<Bluebird<SearchResult[]>>();
+  const [isFirstRender, setIsFirstRender] = useState(true);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   function closeSpotlightSearch() {
+    if (currentRequest.current) {
+      currentRequest.current.cancel();
+    }
+
     dispatch({ type: "CLOSE" });
+    setIsFirstRender(true);
   }
+
+  useEffect(() => {
+    if (!isFirstRender && props.config.onSearch && state.searchValue) {
+      dispatch({ type: "CHANGE_SEARCH_RESULTS_REQUESTED" });
+      currentRequest.current = props.config.onSearch(state.searchValue);
+
+      currentRequest.current
+        .then((searchResults) => {
+          dispatch({
+            type: "CHANGE_SEARCH_RESULTS_RESOLVED",
+            payload: {
+              value: searchResults,
+            },
+          });
+        })
+        .catch(() => {
+          dispatch({ type: "CHANGE_SEARCH_RESULTS_REJECTED" });
+        });
+    } else {
+      setIsFirstRender(false);
+    }
+
+    return () => {
+      currentRequest.current?.cancel();
+    };
+  }, [state.searchValue]);
 
   function detectKeyboardActions(event: KeyboardEvent) {
     if (event.metaKey && event.key === "p") {
