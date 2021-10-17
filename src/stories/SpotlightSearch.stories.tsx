@@ -35,15 +35,27 @@ function request(value: string) {
         res([
           {
             title: "Something #1 (" + value + ")",
+            action: () => {
+              console.log("Call Action for Something #1");
+            },
           },
           {
             title: "Something #2 (" + value + ")",
+            action: () => {
+              console.log("Call Action for Something #2");
+            },
           },
           {
             title: "Something #3 (" + value + ")",
+            action: () => {
+              console.log("Call Action for Something #3");
+            },
           },
           {
             title: "Something #4 (" + value + ")",
+            action: () => {
+              console.log("Call Action for Something #4");
+            },
           },
         ]);
       }
@@ -60,7 +72,16 @@ function request(value: string) {
 
 export function Default() {
   return (
-    <SpotlightSearchProvider config={{ onSearch: request }}>
+    <SpotlightSearchProvider
+      config={{
+        onSearch: request,
+        onSelect(selectedResult) {
+          if (selectedResult.action) {
+            selectedResult.action();
+          }
+        },
+      }}
+    >
       <Main />
     </SpotlightSearchProvider>
   );
