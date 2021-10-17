@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useMemo } from "react";
 import { BiSearch, BiLoaderAlt } from "react-icons/bi";
-import { BsXCircleFill } from "react-icons/bs";
+import {
+  BsXCircleFill,
+  BsArrowReturnLeft as PressEnterIcon,
+} from "react-icons/bs";
 import { debounce } from "throttle-debounce";
 import { css, styled, keyframes } from "../themes";
 import {
@@ -83,13 +86,19 @@ function SpotlightSearch(props: SpotlightSearchProps) {
         </SearchContainer>
         {state.searchResults.length ? (
           <ResultsContainer>
+            <ResultsSectionLabel>Search Results</ResultsSectionLabel>
             {state.searchResults.map((result, index) => {
+              const isSelected = index === state.selectedIndex;
+
               return (
-                <ResultsItem
-                  key={index}
-                  isSelected={index === state.selectedIndex}
-                >
-                  {result.title}
+                <ResultsItem key={index} isSelected={isSelected}>
+                  <ResultItemText>{result.title}</ResultItemText>
+                  {isSelected ? (
+                    <PressEnterLabel>
+                      <span>Select</span>
+                      <PressEnterIcon />
+                    </PressEnterLabel>
+                  ) : null}
                 </ResultsItem>
               );
             })}
@@ -207,11 +216,29 @@ const BiSearchIcon = styled(BiSearch)`
 const BsXCircleFillIcon = styled(BsXCircleFill)`
   width: 40%;
   height: 40%;
-
-  :focus-within {
-    border: 1px solid red;
-  }
 `;
+
+const ResultItemText = styled.div`
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const PressEnterLabel = styled.div(
+  ({ theme }) => css`
+    display: flex;
+    align-items: center;
+    font-size: 0.7em;
+    padding: ${theme.tokens.space[1]} ${theme.tokens.space[2]};
+    border-radius: ${theme.tokens.corners[1]};
+    color: rgba(255, 255, 255, 0.7);
+
+    > *:not(:last-child) {
+      margin-right: ${theme.tokens.space[2]};
+    }
+  `
+);
 
 const rotateAnimation = keyframes`
   from {
@@ -229,25 +256,31 @@ const BiLoaderAltIcon = styled(BiLoaderAlt)`
   animation: ${rotateAnimation} 0.8s infinite linear;
 `;
 
-const ResultsContainer = styled.div`
-  display: grid;
-  grid-template-rows: 60px;
-  border-top: 1px solid #444;
-`;
+const ResultsContainer = styled.div(
+  ({ theme }) => css`
+    display: grid;
+    max-width: 100%;
+    border-top: 1px solid #444;
+    padding: ${theme.tokens.space[3]} ${theme.tokens.space[3]};
+  `
+);
 
 const ResultsItem = styled.div<{ isSelected?: boolean }>(
   ({ theme, isSelected }) => css`
     display: flex;
     align-items: center;
-    padding: ${theme.tokens.space[3]} ${theme.tokens.space[4]};
+    justify-content: space-between;
+    padding: ${theme.tokens.space[2]} ${theme.tokens.space[2]};
+    border-radius: ${theme.tokens.corners[3]};
+    overflow: hidden;
 
     ${isSelected &&
     css`
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
     `}
 
-    :not(:last-child) {
-      border-bottom: 1px solid #444;
+    > *:not(:last-child) {
+      margin-right: ${theme.tokens.space[2]};
     }
   `
 );
@@ -260,6 +293,14 @@ const NoResultsContainer = styled.div(
     text-align: center;
     border-top: 1px solid #444;
     padding: ${theme.tokens.space[3]} ${theme.tokens.space[4]};
+  `
+);
+
+const ResultsSectionLabel = styled.div(
+  ({ theme }) => css`
+    font-size: 0.8em;
+    padding: ${theme.tokens.space[1]} ${theme.tokens.space[2]};
+    color: rgba(255, 255, 255, 0.5);
   `
 );
 
