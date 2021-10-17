@@ -99,11 +99,19 @@ function SpotlightSearchProvider(
       dispatch({ type: "TOGGLE" });
     }
 
-    if (event.key === "Down" || event.key === "ArrowDown") {
+    if (
+      (event.key === "Down" || event.key === "ArrowDown") &&
+      stateRef.current.visible
+    ) {
+      event.preventDefault();
       dispatch({ type: "CHANGE_SELECTED_INDEX_TO_NEXT" });
     }
 
-    if (event.key === "Up" || event.key === "ArrowUp") {
+    if (
+      (event.key === "Up" || event.key === "ArrowUp") &&
+      stateRef.current.visible
+    ) {
+      event.preventDefault();
       dispatch({ type: "CHANGE_SELECTED_INDEX_TO_PREV" });
     }
 
