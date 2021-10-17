@@ -189,7 +189,7 @@ const ClearInputIcon = styled.button(
     outline: none;
 
     :focus > * {
-      outline: 4px solid rgba(71, 149, 238, 0.5);
+      outline: 4px solid ${theme.spotlightSearch.clearIconOutlineColor};
       border-radius: 50%;
     }
   `
@@ -232,7 +232,7 @@ const PressEnterLabel = styled.div(
     font-size: 0.7em;
     padding: ${theme.tokens.space[1]} ${theme.tokens.space[2]};
     border-radius: ${theme.tokens.corners[1]};
-    color: rgba(255, 255, 255, 0.7);
+    color: ${theme.spotlightSearch.labelColor};
 
     > *:not(:last-child) {
       margin-right: ${theme.tokens.space[2]};
@@ -260,7 +260,7 @@ const ResultsContainer = styled.div(
   ({ theme }) => css`
     display: grid;
     max-width: 100%;
-    border-top: 1px solid #444;
+    border-top: 1px solid ${theme.spotlightSearch.dividerColor};
     padding: ${theme.tokens.space[3]} ${theme.tokens.space[3]};
   `
 );
@@ -276,7 +276,7 @@ const ResultsItem = styled.div<{ isSelected?: boolean }>(
 
     ${isSelected &&
     css`
-      background: rgba(255, 255, 255, 0.08);
+      background: ${theme.spotlightSearch.selectedItemBackground};
     `}
 
     > *:not(:last-child) {
@@ -291,7 +291,7 @@ const NoResultsContainer = styled.div(
     flex-direction: column;
     align-items: center;
     text-align: center;
-    border-top: 1px solid #444;
+    border-top: 1px solid ${theme.spotlightSearch.dividerColor};
     padding: ${theme.tokens.space[3]} ${theme.tokens.space[4]};
   `
 );
@@ -300,7 +300,7 @@ const ResultsSectionLabel = styled.div(
   ({ theme }) => css`
     font-size: 0.8em;
     padding: ${theme.tokens.space[1]} ${theme.tokens.space[2]};
-    color: rgba(255, 255, 255, 0.5);
+    color: ${theme.spotlightSearch.labelColor};
   `
 );
 

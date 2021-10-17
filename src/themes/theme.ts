@@ -39,6 +39,10 @@ type Theme = {
     overlayBackground: string;
     modalBackground: string;
     modalTextColor: string;
+    dividerColor: string;
+    clearIconOutlineColor: string;
+    labelColor: string;
+    selectedItemBackground: string;
   };
 };
 
@@ -81,6 +85,10 @@ const darkTheme: Theme = {
     overlayBackground: `rgba(0, 0, 0, 0.5)`,
     modalBackground: tokens.colors.gray[800],
     modalTextColor: tokens.colors.white,
+    dividerColor: tokens.colors.gray[700],
+    clearIconOutlineColor: `rgba(255, 255, 255, 0.3)`,
+    labelColor: tokens.colors.gray[300],
+    selectedItemBackground: tokens.colors.gray[700],
   },
 };
 
@@ -121,8 +129,12 @@ const lightTheme: Theme = {
   },
   spotlightSearch: {
     overlayBackground: `rgba(0, 0, 0, 0.5)`,
-    modalBackground: tokens.colors.gray[800],
-    modalTextColor: tokens.colors.white,
+    modalBackground: tokens.colors.gray[100],
+    modalTextColor: tokens.colors.black,
+    dividerColor: tokens.colors.gray[200],
+    clearIconOutlineColor: `rgba(0, 0, 0, 0.2)`,
+    labelColor: tokens.colors.gray[700],
+    selectedItemBackground: tokens.colors.gray[200],
   },
 };
 
