@@ -1,5 +1,13 @@
 import { SearchResult, SpotlightSearchStateType } from "./typings";
 
+const initialState: SpotlightSearchStateType = {
+  visible: false,
+  status: "idle",
+  searchValue: "",
+  searchResults: [],
+  selectedIndex: 0,
+};
+
 type ActionType =
   | {
       type: "OPEN";
@@ -120,4 +128,4 @@ function reducer(
 }
 
 export type { ActionType };
-export { reducer };
+export { initialState, reducer };

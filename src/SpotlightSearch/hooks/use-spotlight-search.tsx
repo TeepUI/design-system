@@ -8,8 +8,8 @@ import React, {
 } from "react";
 import { useRef, useState } from "react";
 import { SpotlightSearch } from "../SpotlightSearch";
-import { ActionType, reducer } from "./reducer";
-import { SearchResult, SpotlightSearchStateType } from "./typings";
+import { ActionType, initialState, reducer } from "./reducer";
+import { SearchResult } from "./typings";
 
 type SpotlightSearchDispatchType = React.Dispatch<ActionType>;
 type SpotlightSearchConfig = {
@@ -17,17 +17,7 @@ type SpotlightSearchConfig = {
   onSearch?: (value: string) => Bluebird<SearchResult[]>;
 };
 
-const initialState: SpotlightSearchStateType = {
-  visible: false,
-  status: "idle",
-  searchValue: "",
-  searchResults: [],
-  selectedIndex: 0,
-};
-
-const SpotlightSearchStateContext = createContext<SpotlightSearchStateType>(
-  initialState
-);
+const SpotlightSearchStateContext = createContext(initialState);
 
 const SpotlightSearchDispatchContext = createContext<SpotlightSearchDispatchType>(
   () => {}
