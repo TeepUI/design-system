@@ -13,6 +13,7 @@ import { SearchResult, SpotlightSearchStateType } from "./typings";
 
 type SpotlightSearchDispatchType = React.Dispatch<ActionType>;
 type SpotlightSearchConfig = {
+  onSelect: (selectedItem: SearchResult) => void;
   onSearch?: (value: string) => Bluebird<SearchResult[]>;
 };
 
@@ -48,8 +49,10 @@ function SpotlightSearchProvider(
   props: PropsWithChildren<SpotlightSearchProviderProps>
 ) {
   const currentRequest = useRef<Bluebird<SearchResult[]>>();
+  const currentOnSelect = useRef(props.config.onSelect);
   const [isFirstRender, setIsFirstRender] = useState(true);
   const [state, dispatch] = useReducer(reducer, initialState);
+  const stateRef = useRef(state);
 
   function closeSpotlightSearch() {
     if (currentRequest.current) {
@@ -59,6 +62,10 @@ function SpotlightSearchProvider(
     dispatch({ type: "CLOSE" });
     setIsFirstRender(true);
   }
+
+  useEffect(() => {
+    stateRef.current = state;
+  }, [state]);
 
   useEffect(() => {
     if (!isFirstRender && props.config.onSearch && state.searchValue) {
@@ -101,6 +108,16 @@ function SpotlightSearchProvider(
     }
 
     if (event.key === "Escape" || event.key === "Esc") {
+      closeSpotlightSearch();
+    }
+
+    if (event.key === "Enter") {
+      if (currentOnSelect.current) {
+        currentOnSelect.current(
+          stateRef.current.searchResults[stateRef.current.selectedIndex]
+        );
+      }
+
       closeSpotlightSearch();
     }
   }

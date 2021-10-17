@@ -1,5 +1,6 @@
 export type SearchResult = {
   title: string;
+  action?: () => void;
 };
 
 export type SpotlightSearchStateType = {
