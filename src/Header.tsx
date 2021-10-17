@@ -4,7 +4,6 @@ const Root = styled.header(
   ({ theme }) => css`
     display: flex;
     align-items: center;
-    background: ${theme.header.background};
     padding: 0 ${theme.tokens.space[5]};
     min-height: 80px;
 
