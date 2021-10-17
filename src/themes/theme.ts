@@ -13,9 +13,6 @@ type Theme = {
     background: string;
     color: string;
   };
-  header: {
-    background: string;
-  };
   button: {
     primary: {
       buttonColor: string;
@@ -67,9 +64,6 @@ const darkTheme: Theme = {
     background: tokens.colors.pink[400],
     color: tokens.colors.black,
   },
-  header: {
-    background: tokens.colors.gray[900],
-  },
   button: {
     primary: {
       buttonColor: tokens.colors.primary,
@@ -120,9 +114,6 @@ const lightTheme: Theme = {
   inlineCode: {
     background: tokens.colors.pink[100],
     color: tokens.colors.black,
-  },
-  header: {
-    background: tokens.colors.white,
   },
   button: {
     primary: {

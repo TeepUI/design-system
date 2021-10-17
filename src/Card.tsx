@@ -3,10 +3,18 @@ import { BsImage } from "react-icons/bs";
 
 import { css, styled } from "./themes";
 
-const CardContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+const CardContainer = styled.div(
+  ({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    border-radius: ${theme.tokens.corners[1]};
+
+    :focus {
+      outline: 4px solid ${theme.tokens.colors.primary};
+      outline-offset: 8px;
+    }
+  `
+);
 
 const Title = styled.h3(
   ({ theme }) => css`
@@ -95,5 +103,9 @@ const Card = Object.assign(CardContainer, {
   Text,
   Date,
 });
+
+Card.defaultProps = {
+  tabIndex: 0,
+};
 
 export { Card };
