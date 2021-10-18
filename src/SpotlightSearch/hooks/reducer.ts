@@ -109,14 +109,14 @@ function reducer(
     case "CHANGE_SELECTED_INDEX_TO_NEXT": {
       const nextIndex =
         state.selectedIndex + 1 > state.searchResults.length - 1
-          ? 0
+          ? state.selectedIndex
           : state.selectedIndex + 1;
       return { ...state, selectedIndex: nextIndex };
     }
     case "CHANGE_SELECTED_INDEX_TO_PREV": {
       const prevIndex =
         state.selectedIndex - 1 < 0
-          ? state.searchResults.length - 1
+          ? state.selectedIndex
           : state.selectedIndex - 1;
 
       return { ...state, selectedIndex: prevIndex };

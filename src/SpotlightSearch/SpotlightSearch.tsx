@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { useMemo } from "react";
 import { BiSearch, BiLoaderAlt } from "react-icons/bi";
 import {
@@ -128,6 +128,7 @@ const Root = styled.div(
     align-items: center;
     justify-content: center;
     padding: ${theme.tokens.space[3]} ${theme.tokens.space[5]};
+    max-height: 100vh;
   `
 );
 
@@ -153,6 +154,7 @@ const Content = styled.div(
     width: 100%;
     max-width: 600px;
     z-index: 24;
+    max-height: 100%;
   `
 );
 
@@ -259,13 +261,30 @@ const BiLoaderAltIcon = styled(BiLoaderAlt)`
 const ResultsContainer = styled.div(
   ({ theme }) => css`
     display: grid;
+    grid-auto-rows: min-content;
     max-width: 100%;
     border-top: 1px solid ${theme.spotlightSearch.dividerColor};
     padding: ${theme.tokens.space[3]} ${theme.tokens.space[3]};
+    overflow-y: auto;
   `
 );
 
-const ResultsItem = styled.div<{ isSelected?: boolean }>(
+function ResultsItem(props: PropsWithChildren<{ isSelected?: boolean }>) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (props.isSelected && ref.current) {
+      ref.current.scrollIntoView({
+        block: "center",
+        behavior: "smooth",
+      });
+    }
+  }, [props.isSelected]);
+
+  return <ResultsItemStyled ref={ref} {...props} />;
+}
+
+const ResultsItemStyled = styled.div<{ isSelected?: boolean }>(
   ({ theme, isSelected }) => css`
     display: flex;
     align-items: center;

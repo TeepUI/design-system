@@ -57,6 +57,24 @@ function request(value: string) {
               console.log("Call Action for Something #4");
             },
           },
+          {
+            title: "Something #5 (" + value + ")",
+            action: () => {
+              console.log("Call Action for Something #5");
+            },
+          },
+          {
+            title: "Something #6 (" + value + ")",
+            action: () => {
+              console.log("Call Action for Something #6");
+            },
+          },
+          {
+            title: "Something #7 (" + value + ")",
+            action: () => {
+              console.log("Call Action for Something #7");
+            },
+          },
         ]);
       }
     }, 2000);
