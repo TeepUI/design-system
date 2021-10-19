@@ -46,6 +46,7 @@ type Theme = {
   };
   card: {
     titleColor: string;
+    titleHoverColor: string;
     textColor: string;
     imageBackground: string;
     noImageIconColor: string;
@@ -99,6 +100,7 @@ const darkTheme: Theme = {
   },
   card: {
     titleColor: tokens.colors.white,
+    titleHoverColor: tokens.colors.gray[100],
     textColor: tokens.colors.gray[400],
     imageBackground: tokens.colors.gray[900],
     noImageIconColor: tokens.colors.gray[800],
@@ -152,6 +154,7 @@ const lightTheme: Theme = {
   },
   card: {
     titleColor: tokens.colors.black,
+    titleHoverColor: tokens.colors.gray[800],
     textColor: tokens.colors.gray[600],
     imageBackground: tokens.colors.gray[200],
     noImageIconColor: tokens.colors.gray[300],

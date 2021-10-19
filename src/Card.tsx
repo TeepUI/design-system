@@ -14,6 +14,11 @@ const Title = styled.h3(
     margin: ${theme.tokens.space[3]} 0 0;
     color: ${theme.card.titleColor};
     cursor: pointer;
+    transition: color 0.2s;
+
+    :hover {
+      color: ${theme.card.titleHoverColor};
+    }
   `
 );
 
