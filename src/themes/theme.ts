@@ -44,6 +44,13 @@ type Theme = {
     labelColor: string;
     selectedItemBackground: string;
   };
+  card: {
+    titleColor: string;
+    textColor: string;
+    imageBackground: string;
+    noImageIconColor: string;
+    dateColor: string;
+  };
 };
 
 const darkTheme: Theme = {
@@ -90,6 +97,13 @@ const darkTheme: Theme = {
     labelColor: tokens.colors.gray[300],
     selectedItemBackground: tokens.colors.gray[700],
   },
+  card: {
+    titleColor: tokens.colors.white,
+    textColor: tokens.colors.gray[400],
+    imageBackground: tokens.colors.gray[900],
+    noImageIconColor: tokens.colors.gray[800],
+    dateColor: tokens.colors.gray[600],
+  },
 };
 
 const lightTheme: Theme = {
@@ -135,6 +149,13 @@ const lightTheme: Theme = {
     clearIconOutlineColor: `rgba(0, 0, 0, 0.2)`,
     labelColor: tokens.colors.gray[700],
     selectedItemBackground: tokens.colors.gray[200],
+  },
+  card: {
+    titleColor: tokens.colors.black,
+    textColor: tokens.colors.gray[600],
+    imageBackground: tokens.colors.gray[200],
+    noImageIconColor: tokens.colors.gray[300],
+    dateColor: tokens.colors.gray[400],
   },
 };
 
