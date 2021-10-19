@@ -36,6 +36,25 @@ export function Default() {
         </Card.Text>
         <Card.Date dateTime="2021-07-21">July 21, 2022</Card.Date>
       </Card>
+      <Card>
+        <Card.Image src="https://blog.pavelkeyzik.com/_next/image?url=%2Fassets%2Fblog%2Fusing-primer-design-system%2Fcover.jpeg&w=1920&q=75" />
+        <Card.Title>
+          How I feel about using GitHub's Design System (aka Primer)
+        </Card.Title>
+        <Card.Text>A short story about my experience of using Primer</Card.Text>
+        <Card.Date dateTime="2021-08-19">August 19, 2021</Card.Date>
+      </Card>
+      <Card>
+        <Card.Image src="https://blog.pavelkeyzik.com/_next/image?url=%2Fassets%2Fblog%2Fgenerate-types-from-swagger%2Fcover.jpg&w=1920&q=75" />
+        <Card.Title>
+          Generate TypeScript types from Swagger (OpenAPI 3)
+        </Card.Title>
+        <Card.Text>
+          In this article, I'd like to share some code that helped me a lot to
+          work with an API that had been changed often
+        </Card.Text>
+        <Card.Date dateTime="2020-08-27">August 27, 2020</Card.Date>
+      </Card>
     </CardsGrid>
   );
 }
