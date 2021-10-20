@@ -7,6 +7,7 @@ type ButtonProps = {
 const Button = styled.button<ButtonProps>(
   ({ theme, variant }) => css`
     display: flex;
+    justify-content: center;
     margin: 0;
     padding: ${theme.tokens.space[3]} ${theme.tokens.space[4]};
     font: inherit;
