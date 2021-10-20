@@ -188,7 +188,10 @@ const ClearInputIcon = styled.button(
     color: ${theme.spotlightSearch.modalTextColor};
     padding: 0;
     width: 48px;
-    outline: none;
+
+    :focus {
+      outline: none;
+    }
 
     :focus > * {
       outline: 4px solid ${theme.spotlightSearch.clearIconOutlineColor};
@@ -206,7 +209,10 @@ const SearchInput = styled.input(
     font-size: 1em;
     width: 100%;
     color: ${theme.spotlightSearch.modalTextColor};
-    outline: none;
+
+    :focus {
+      outline: none;
+    }
   `
 );
 
