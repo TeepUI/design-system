@@ -8,11 +8,6 @@ const CardContainer = styled.div(
     display: flex;
     flex-direction: column;
     border-radius: ${theme.tokens.corners[1]};
-
-    :focus {
-      outline: 4px solid ${theme.tokens.colors.primary};
-      outline-offset: 8px;
-    }
   `
 );
 
