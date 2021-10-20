@@ -58,8 +58,12 @@ export function Default() {
         }}
       >
         <Typography.H2>Pavel Keyzik's Personal Blog</Typography.H2>
-        <Typography.Body1>
-          This blog is just a story about my experience in web development
+        <Typography.Body1 style={{ maxWidth: "600px" }}>
+          Please, check my{" "}
+          <a href="https://twitter.com/pavelkeyzik" target="_blank">
+            Twitter account{" "}
+          </a>{" "}
+          as this blog is just a story about my experience in web development.
         </Typography.Body1>
         <div style={{ display: "flex", gap: 16 }}>
           <Button>Hire me if you're GitHub</Button>

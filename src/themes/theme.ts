@@ -104,7 +104,7 @@ const darkTheme: Theme = {
     },
   },
   link: {
-    color: tokens.colors.blue[600],
+    color: tokens.colors.primary,
   },
   mark: {
     background: tokens.colors.green[200],
