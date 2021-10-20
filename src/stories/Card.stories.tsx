@@ -1,6 +1,7 @@
 import React from "react";
 import { css, styled } from "../themes";
 import { Card } from "../Card";
+import { maxContentWidth } from "../utils/styles-config";
 
 export function Default() {
   return (
@@ -64,8 +65,7 @@ const CardsGrid = styled.div(
     display: grid;
     grid-gap: ${theme.tokens.space[5]};
     grid-template-columns: repeat(3, 1fr);
-    max-width: 900px;
-    margin: 0 auto;
+    ${maxContentWidth};
   `
 );
 

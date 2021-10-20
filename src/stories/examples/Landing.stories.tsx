@@ -3,8 +3,10 @@ import { SpotlightSearchProvider } from "../../SpotlightSearch";
 import { Header } from "../../Header";
 import { Button } from "../../Button";
 import { Card } from "../../Card";
+import { Typography } from "../../Typography";
 import { spotlightSearchRequest } from "../../utils/spotlight-utils";
 import { css, styled } from "../../themes";
+import { maxContentWidth } from "../../utils/styles-config";
 
 export function Default() {
   return (
@@ -19,7 +21,9 @@ export function Default() {
       }}
     >
       <Header>
-        <Header.Item>Pavel Keyzik</Header.Item>
+        <Header.Item>
+          <Header.Logo href="#">Pavel Keyzik</Header.Logo>
+        </Header.Item>
         <Header.Item full />
         <Header.Item>Press Cmd+P to Search</Header.Item>
       </Header>
@@ -33,8 +37,10 @@ export function Default() {
           minHeight: 400,
         }}
       >
-        <h2>Pavel Keyzik's Personal Blog</h2>
-        <p>This blog is just a story about my experience in web development</p>
+        <Typography.H2>Pavel Keyzik's Personal Blog</Typography.H2>
+        <Typography.Body1>
+          This blog is just a story about my experience in web development
+        </Typography.Body1>
         <Button>Action Item</Button>
       </div>
       <main>
@@ -72,8 +78,7 @@ const CardsGrid = styled.div(
     grid-gap: ${theme.tokens.space[5]};
     grid-template-columns: repeat(3, 1fr);
     padding: ${theme.tokens.space[5]} 0;
-    max-width: 900px;
-    margin: 0 auto;
+    ${maxContentWidth};
   `
 );
 
