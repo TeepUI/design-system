@@ -1,4 +1,7 @@
 import React from "react";
+import addons from "@storybook/addons";
+import { useDarkMode } from "storybook-dark-mode";
+import { BsFillSunFill, BsMoonStarsFill } from "react-icons/bs";
 import { SpotlightSearchProvider } from "../../SpotlightSearch";
 import { Header } from "../../Header";
 import { Button } from "../../Button";
@@ -8,7 +11,15 @@ import { spotlightSearchRequest } from "../../utils/spotlight-utils";
 import { css, styled } from "../../themes";
 import { maxContentWidth } from "../../utils/styles-config";
 
+const channel = addons.getChannel();
+
 export function Default() {
+  const dark = useDarkMode();
+
+  function toggleDarkMode() {
+    channel.emit("DARK_MODE", !dark);
+  }
+
   return (
     <SpotlightSearchProvider
       config={{
@@ -26,6 +37,11 @@ export function Default() {
         </Header.Item>
         <Header.Item full />
         <Header.Item>Press Cmd+P to Search</Header.Item>
+        <Header.Item>
+          <Button variant="text" onClick={toggleDarkMode}>
+            {dark ? <BsFillSunFill /> : <BsMoonStarsFill />}
+          </Button>
+        </Header.Item>
       </Header>
       <div
         style={{

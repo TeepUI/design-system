@@ -28,6 +28,10 @@ type Theme = {
       textColor: string;
       textColorHovered: string;
     };
+    text: {
+      color: string;
+      colorHovered: string;
+    };
   };
   link: {
     color: string;
@@ -82,6 +86,10 @@ const darkTheme: Theme = {
       textColor: tokens.colors.white,
       textColorHovered: tokens.colors.gray[200],
     },
+    text: {
+      color: tokens.colors.white,
+      colorHovered: tokens.colors.gray[200],
+    },
   },
   link: {
     color: tokens.colors.blue[600],
@@ -134,7 +142,11 @@ const lightTheme: Theme = {
       buttonColor: tokens.colors.primary,
       buttonColorHovered: tokens.colors.blue[600],
       textColor: tokens.colors.primary,
-      textColorHovered: tokens.colors.gray[600],
+      textColorHovered: tokens.colors.blue[600],
+    },
+    text: {
+      color: tokens.colors.black,
+      colorHovered: tokens.colors.gray[700],
     },
   },
   link: {

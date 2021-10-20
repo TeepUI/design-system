@@ -1,7 +1,7 @@
 import { css, styled } from "./themes";
 
 type ButtonProps = {
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "text";
 };
 
 const Button = styled.button<ButtonProps>(
@@ -35,6 +35,16 @@ const Button = styled.button<ButtonProps>(
           :hover {
             border-color: ${theme.button.secondary.buttonColorHovered};
             color: ${theme.button.secondary.textColorHovered};
+          }
+        `
+      : null}
+
+    ${variant === "text"
+      ? css`
+          color: ${theme.button.text.color};
+
+          :hover {
+            color: ${theme.button.text.colorHovered};
           }
         `
       : null}
