@@ -11,7 +11,7 @@ function FormControlWithoutProvider(props: PropsWithChildren<unknown>) {
   const formControlState = useFormControlState();
 
   return (
-    <label>
+    <label style={{ display: "flex", flexDirection: "column" }}>
       {formControlState.label ? (
         <Label hasError={formControlState.errorMessage ? true : false}>
           {formControlState.label}
@@ -37,6 +37,8 @@ function FormControl(props: PropsWithChildren<FormControlProps>) {
 
 const Label = styled.span<{ hasError?: boolean }>(
   ({ theme, hasError }) => css`
+    margin-bottom: ${theme.tokens.space[1]};
+
     ${hasError
       ? css`
           color: ${theme.formControl.errorColor};
