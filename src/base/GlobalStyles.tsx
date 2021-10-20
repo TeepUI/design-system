@@ -97,9 +97,10 @@ const GlobalStyles = createGlobalStyle(
     }
 
     a {
-      font-weight: bold;
+      font-weight: 500;
       color: ${theme.link.color};
       text-decoration: none;
+      cursor: pointer;
 
       :hover {
         text-decoration: underline;
