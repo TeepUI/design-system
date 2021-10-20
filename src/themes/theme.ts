@@ -2,6 +2,9 @@ import { Tokens, tokens } from "./tokens";
 
 type Theme = {
   tokens: Tokens;
+  header: {
+    logoColor: string;
+  };
   body: {
     background: string;
     color: string;
@@ -53,6 +56,9 @@ type Theme = {
 
 const darkTheme: Theme = {
   tokens,
+  header: {
+    logoColor: tokens.colors.white,
+  },
   body: {
     background: tokens.colors.black,
     color: tokens.colors.white,
@@ -104,6 +110,9 @@ const darkTheme: Theme = {
 
 const lightTheme: Theme = {
   tokens,
+  header: {
+    logoColor: tokens.colors.black,
+  },
   body: {
     background: tokens.colors.gray[100],
     color: tokens.colors.black,
