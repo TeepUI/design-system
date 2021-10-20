@@ -1,11 +1,10 @@
 import React, { PropsWithChildren } from "react";
 import { styled, css } from "../themes";
-import { FormControlProvider, useFormControlState } from "./use-form-control";
-
-type FormControlProps = {
-  label?: string;
-  errorMessage?: string;
-};
+import {
+  FormControlProps,
+  FormControlProvider,
+  useFormControlState,
+} from "./use-form-control";
 
 function FormControlWithoutProvider(props: PropsWithChildren<unknown>) {
   const formControlState = useFormControlState();
@@ -13,7 +12,10 @@ function FormControlWithoutProvider(props: PropsWithChildren<unknown>) {
   return (
     <label style={{ display: "flex", flexDirection: "column" }}>
       {formControlState.label ? (
-        <Label hasError={formControlState.errorMessage ? true : false}>
+        <Label
+          hasError={formControlState.errorMessage ? true : false}
+          disabled={formControlState.disabled}
+        >
           {formControlState.label}
         </Label>
       ) : null}
@@ -35,13 +37,19 @@ function FormControl(props: PropsWithChildren<FormControlProps>) {
   );
 }
 
-const Label = styled.span<{ hasError?: boolean }>(
-  ({ theme, hasError }) => css`
+const Label = styled.span<{ hasError?: boolean; disabled?: boolean }>(
+  ({ theme, disabled, hasError }) => css`
     margin-bottom: ${theme.tokens.space[1]};
 
     ${hasError
       ? css`
           color: ${theme.formControl.errorColor};
+        `
+      : null}
+
+    ${disabled
+      ? css`
+          color: ${theme.formControl.labelDisabledColor};
         `
       : null}
   `

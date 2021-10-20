@@ -9,7 +9,7 @@ type AdditionalTextAreaProps = {
 const TextAreaBase = styled.textarea<AdditionalTextAreaProps>(
   ({ theme, hasError }) => css`
     display: flex;
-    border: 2px solid ${theme.input.borderColor};
+    border: 1px solid ${theme.input.borderColor};
     border-radius: ${theme.tokens.corners[2]};
     padding: ${theme.tokens.space[1]} ${theme.tokens.space[2]};
     min-height: 44px;
@@ -47,7 +47,11 @@ function TextArea(
   const state = useFormControlState();
 
   return (
-    <TextAreaBase hasError={state.errorMessage ? true : false} {...props} />
+    <TextAreaBase
+      hasError={state.errorMessage ? true : false}
+      disabled={state.disabled}
+      {...props}
+    />
   );
 }
 
