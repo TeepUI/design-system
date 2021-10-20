@@ -1,23 +1,24 @@
 import React, { createContext, PropsWithChildren } from "react";
 import { useContext } from "react";
 
-type StateType = {
+type FormControlProps = {
+  disabled?: boolean;
   label?: string;
   errorMessage?: string;
 };
 
-const initialState: StateType = {
+const initialState: FormControlProps = {
   label: "",
   errorMessage: "",
 };
 
-const FormControlStateContext = createContext<StateType>(initialState);
+const FormControlStateContext = createContext<FormControlProps>(initialState);
 
 function useFormControlState() {
   return useContext(FormControlStateContext);
 }
 
-function FormControlProvider(props: PropsWithChildren<StateType>) {
+function FormControlProvider(props: PropsWithChildren<FormControlProps>) {
   const { children, ...state } = props;
 
   return (
@@ -27,4 +28,5 @@ function FormControlProvider(props: PropsWithChildren<StateType>) {
   );
 }
 
+export type { FormControlProps };
 export { useFormControlState, FormControlProvider };

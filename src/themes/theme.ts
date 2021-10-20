@@ -58,6 +58,7 @@ type Theme = {
   };
   formControl: {
     errorColor: string;
+    labelDisabledColor: string;
   };
   input: {
     valueColor: string;
@@ -128,15 +129,16 @@ const darkTheme: Theme = {
   },
   formControl: {
     errorColor: "#ff4d4d",
+    labelDisabledColor: tokens.colors.gray[700],
   },
   input: {
     valueColor: tokens.colors.white,
-    valueDisabledColor: tokens.colors.gray[600],
+    valueDisabledColor: tokens.colors.gray[700],
     placeholderColor: tokens.colors.gray[400],
-    placeholderDisabledColor: tokens.colors.gray[600],
+    placeholderDisabledColor: tokens.colors.gray[700],
     borderColor: tokens.colors.gray[400],
     borderFocusColor: tokens.colors.white,
-    borderDisabledColor: tokens.colors.gray[600],
+    borderDisabledColor: tokens.colors.gray[700],
   },
 };
 
@@ -198,6 +200,7 @@ const lightTheme: Theme = {
   },
   formControl: {
     errorColor: "#ff4d4d",
+    labelDisabledColor: tokens.colors.gray[300],
   },
   input: {
     valueColor: tokens.colors.black,

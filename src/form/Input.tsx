@@ -9,7 +9,7 @@ type AdditionalInputProps = {
 const InputBase = styled.input<AdditionalInputProps>(
   ({ theme, hasError }) => css`
     display: flex;
-    border: 2px solid ${theme.input.borderColor};
+    border: 1px solid ${theme.input.borderColor};
     border-radius: ${theme.tokens.corners[2]};
     padding: 0 ${theme.tokens.space[2]};
     min-height: 44px;
@@ -46,7 +46,13 @@ function Input(
 ) {
   const state = useFormControlState();
 
-  return <InputBase hasError={state.errorMessage ? true : false} {...props} />;
+  return (
+    <InputBase
+      hasError={state.errorMessage ? true : false}
+      disabled={state.disabled}
+      {...props}
+    />
+  );
 }
 
 export { Input };
