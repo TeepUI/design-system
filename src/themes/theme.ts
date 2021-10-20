@@ -56,6 +56,18 @@ type Theme = {
     noImageIconColor: string;
     dateColor: string;
   };
+  formControl: {
+    errorColor: string;
+  };
+  input: {
+    valueColor: string;
+    valueDisabledColor: string;
+    placeholderColor: string;
+    placeholderDisabledColor: string;
+    borderColor: string;
+    borderFocusColor: string;
+    borderDisabledColor: string;
+  };
 };
 
 const darkTheme: Theme = {
@@ -114,6 +126,18 @@ const darkTheme: Theme = {
     noImageIconColor: tokens.colors.gray[800],
     dateColor: tokens.colors.gray[600],
   },
+  formControl: {
+    errorColor: "#ff4d4d",
+  },
+  input: {
+    valueColor: tokens.colors.white,
+    valueDisabledColor: tokens.colors.gray[600],
+    placeholderColor: tokens.colors.gray[400],
+    placeholderDisabledColor: tokens.colors.gray[600],
+    borderColor: tokens.colors.gray[400],
+    borderFocusColor: tokens.colors.white,
+    borderDisabledColor: tokens.colors.gray[600],
+  },
 };
 
 const lightTheme: Theme = {
@@ -171,6 +195,18 @@ const lightTheme: Theme = {
     imageBackground: tokens.colors.gray[200],
     noImageIconColor: tokens.colors.gray[300],
     dateColor: tokens.colors.gray[400],
+  },
+  formControl: {
+    errorColor: "#ff4d4d",
+  },
+  input: {
+    valueColor: tokens.colors.black,
+    valueDisabledColor: tokens.colors.gray[300],
+    placeholderColor: tokens.colors.gray[500],
+    placeholderDisabledColor: tokens.colors.gray[300],
+    borderColor: tokens.colors.gray[500],
+    borderFocusColor: tokens.colors.black,
+    borderDisabledColor: tokens.colors.gray[300],
   },
 };
 
