@@ -41,7 +41,10 @@ export function Default() {
         <Typography.Body1>
           This blog is just a story about my experience in web development
         </Typography.Body1>
-        <Button>Action Item</Button>
+        <div style={{ display: "flex", gap: 16 }}>
+          <Button>Hire me if you're GitHub</Button>
+          <Button variant="secondary">About Me</Button>
+        </div>
       </div>
       <main>
         <CardsGrid>

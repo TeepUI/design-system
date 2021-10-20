@@ -14,7 +14,7 @@ const Button = styled.button<ButtonProps>(
     background: none;
     cursor: pointer;
     border-radius: ${theme.tokens.corners[4]};
-    transition: 0.2s;
+    transition: background-color 0.2s, color 0.2s;
 
     ${variant === "primary"
       ? css`

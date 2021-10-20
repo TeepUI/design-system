@@ -8,6 +8,10 @@ const CardContainer = styled.div(
     display: flex;
     flex-direction: column;
     border-radius: ${theme.tokens.corners[1]};
+
+    :focus {
+      outline-offset: 8px;
+    }
   `
 );
 
@@ -82,7 +86,7 @@ const ImageContainer = styled.div(
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: all 0.2s;
+      transition: transform 0.2s;
     }
   `
 );

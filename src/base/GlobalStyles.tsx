@@ -17,7 +17,7 @@ const GlobalStyles = createGlobalStyle(
 
     *:focus {
       outline: 2px solid ${theme.tokens.colors.primary};
-      outline-offset: 8px;
+      outline-offset: 2px;
     }
 
     /*
